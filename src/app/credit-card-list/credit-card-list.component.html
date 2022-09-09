@@ -1,0 +1,48 @@
+<form class="add-form container" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+        <label for="callerreference">Caller Reference</label>
+        <input type="text" name="callerreference" [(ngModel)]="callerreference" id="callerreference"
+            placeholder="Caller Reference partial" />
+    </div>
+    <div class="form-control">
+        <label for="settlementdate">Caller Reference</label>
+        <input type="text" name="settlementdate" [(ngModel)]="settlementdate" id="settlementdate"
+            placeholder="Settlement Date" />
+    </div>
+    <input type="submit" value="Search" class="btn btn-block">
+    <p><span *ngIf="errorMsg">{{errorMsg}}</span></p>
+</form>
+<div *ngIf="transactions.length > 0">
+    <ul>
+        <li class="row header">
+            <span>Caller callerReference</span>
+            <span>Amount</span>
+            <span>Request Date</span>
+            <span>Settlement Date</span>
+            <span>Status</span>
+            <span></span>
+        </li>
+        <li *ngFor="let transaction of transactions" class="row">
+            <span>{{transaction.callerReference}}</span>
+            <span class="currency">{{formatCurrency(transaction.amount)}} </span>
+            <span>{{formatDate(transaction.requestDate)}}</span>
+            <span>{{formatDate(transaction.settlementDate)}}</span>
+            <span>{{transaction.status}}</span>
+            <a>
+                <fa-icon (click)="onDelete(transaction)" [ngStyle]="{color:'red'}" [icon]="faTimes"></fa-icon>
+                <fa-icon (click)="onEdit(transaction)" [ngStyle]="{color:'white'}" [icon]="faEdit"></fa-icon>
+            </a>
+        </li>
+    </ul>
+</div>
+<div *ngIf="transactions.length > 0" class="navigate">
+    <span>Page {{xpagination.CurrentPage}}/{{xpagination.TotalPageCount}}</span>
+    <span>
+        <fa-icon *ngIf="pageNumber*pageSize < xpagination.TotalItemCount" (click)="onNextPage()"
+            [ngStyle]="{color:'black'}" [icon]="faForward"></fa-icon>
+    </span>
+    <span>
+        <fa-icon *ngIf="pageNumber > 1" (click)="onPrevPage()" [ngStyle]="{color:'black'}" [icon]="faBackward">
+        </fa-icon>
+    </span>
+</div>

@@ -1,0 +1,55 @@
+
+div {
+    margin: auto;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ul {
+    padding: 10px;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr 1.5fr .5fr .5fr;
+    border-bottom: white 1px solid;
+    column-gap: 5px;   
+}
+
+li.row span, li.row a{
+    color: white;
+    padding: 10px;
+    /* border: white 1px solid; */
+}
+li.row a {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+li.header {
+    background-color: lightgrey !important;
+    padding: 5px;
+    justify-content: center;
+}
+li.header span {
+    color: black;
+    font-weight: bold;
+}
+
+span.currency {
+    justify-self: right;
+}
+.navigate {
+    display: grid;
+    grid-template-columns: 1fr .5fr .5fr 6fr;
+    justify-content: left;
+}
+
+form p {
+    height: 20px;
+    justify-self: center;
+}
